@@ -1918,12 +1918,12 @@ class Exodus:
         try:
             ns1 = self.get_node_set(id)
         except KeyError:
-            raise KeyError("Self Exodus file does not contain nodeset with ID {}".format(id))
+            raise KeyError("Self Exodus file does not contain node set with ID {}".format(id))
 
         try:
             ns2 = other.get_node_set(id2)
         except KeyError:
-            raise KeyError("Other Exodus file does not contain nodeset with ID {}".format(id2))
+            raise KeyError("Other Exodus file does not contain node set with ID {}".format(id2))
 
         equivalent = numpy.array_equal(numpy.array(sorted(ns1.tolist())), numpy.array(sorted(ns2.tolist())))
         if equivalent:
@@ -1945,85 +1945,82 @@ class Exodus:
 
     def add_nodeset(self, node_ids, nodeset_id, nodeset_name=""):
         if self.mode != 'w' and self.mode != 'a':
-            raise PermissionError("Need to be in write or append mode to add nodeset")
+            raise PermissionError("Need to be in write or append mode to add node set")
         self.ledger.add_nodeset(node_ids, nodeset_id, nodeset_name)
 
     def remove_nodeset(self, identifier):
         if self.mode != 'w' and self.mode != 'a':
-            raise PermissionError("Need to be in write or append mode to add nodeset")
+            raise PermissionError("Need to be in write or append mode to remove node set")
         self.ledger.remove_nodeset(identifier)
 
     def merge_nodeset(self, new_id, ns1, ns2, delete=True):
         if self.mode != 'w' and self.mode != 'a':
-            raise PermissionError("Need to be in write or append mode to add nodeset")
+            raise PermissionError("Need to be in write or append mode to merge node sets")
         self.ledger.merge_nodesets(new_id, ns1, ns2, delete)
 
     def add_node_to_nodeset(self, node_id, identifier):
         if self.mode != 'w' and self.mode != 'a':
-            raise PermissionError("Need to be in write or append mode to add nodeset")
+            raise PermissionError("Need to be in write or append mode to add node to node set")
         self.ledger.add_node_to_nodeset(node_id, identifier)
 
     def add_nodes_to_nodeset(self, node_ids, identifier):
         if self.mode != 'w' and self.mode != 'a':
-            raise PermissionError("Need to be in write or append mode to add nodeset")
+            raise PermissionError("Need to be in write or append mode to add nodes to node set")
         self.ledger.add_nodes_to_nodeset(node_ids, identifier)
 
     def remove_node_from_nodeset(self, node_id, identifier):
         if self.mode != 'w' and self.mode != 'a':
-            raise PermissionError("Need to be in write or append mode to add nodeset")
+            raise PermissionError("Need to be in write or append mode to remove node from node set")
         self.ledger.remove_node_from_nodeset(node_id, identifier)
 
     def remove_nodes_from_nodeset(self, node_ids, identifier):
         if self.mode != 'w' and self.mode != 'a':
-            raise PermissionError("Need to be in write or append mode to add nodeset")
+            raise PermissionError("Need to be in write or append mode to remove nodes from node set")
         self.ledger.remove_nodes_from_nodeset(node_ids, identifier)
 
     def add_sideset(self, elem_ids, side_ids, ss_id, ss_name, dist_fact=None, variables=None):
         if self.mode != 'w' and self.mode != 'a':
-            raise PermissionError("Need to be in write or append mode to add nodeset")
+            raise PermissionError("Need to be in write or append mode to add side set")
         self.ledger.add_sideset(elem_ids, side_ids, ss_id, ss_name, dist_fact, variables)
 
     def remove_sideset(self, ss_id):
         if self.mode != 'w' and self.mode != 'a':
-            raise PermissionError("Need to be in write or append mode to add nodeset")
+            raise PermissionError("Need to be in write or append mode to remove side set")
         self.ledger.remove_sideset(ss_id)
-
 
     def add_sides_to_sideset(self, elem_ids, side_ids, ss_id, dist_facts=None, variables=None):
         if self.mode != 'w' and self.mode != 'a':
-            raise PermissionError("Need to be in write or append mode to add nodeset")
+            raise PermissionError("Need to be in write or append mode to add sides to side set")
         self.ledger.add_sides_to_sideset(elem_ids, side_ids, ss_id, dist_facts, variables)
 
     def remove_sides_from_sideset(self, elem_ids, side_ids, ss_id):
         if self.mode != 'w' and self.mode != 'a':
-            raise PermissionError("Need to be in write or append mode to add nodeset")
+            raise PermissionError("Need to be in write or append mode to remove sides from side set")
         self.ledger.remove_sides_from_sideset(elem_ids, side_ids, ss_id)
 
     def split_sideset(self, old_ss, function, ss_id1, ss_id2, delete, ss_name1="", ss_name2=""):
         if self.mode != 'w' and self.mode != 'a':
-            raise PermissionError("Need to be in write or append mode to split sideset")
+            raise PermissionError("Need to be in write or append mode to split side set")
         self.ledger.split_sideset(old_ss, function, ss_id1, ss_id2, delete, ss_name1, ss_name2)
     
-
     def add_element(self, block_id, nodelist):
         if self.mode != 'w' and self.mode != 'a':
-            raise PermissionError("Need to be in write or append mode to add nodeset")
+            raise PermissionError("Need to be in write or append mode to add element")
         return self.ledger.add_element(block_id, nodelist)
-
 
     def remove_element(self, elem_id):
         if self.mode != 'w' and self.mode != 'a':
-            raise PermissionError("Need to be in write or append mode to add nodeset")
+            raise PermissionError("Need to be in write or append mode to remove element")
         return self.ledger.remove_element(elem_id)
 
     def skin_element_block(self, block_id, skin_id, skin_name):
         if self.mode != 'w' and self.mode != 'a':
-            raise PermissionError("Need to be in write or append mode to skin element into new sideset")
+            raise PermissionError("Need to be in write or append mode to skin element into new side set")
         self.ledger.skin_element_block(block_id, skin_id, skin_name)
 
     def skin(self, skin_id, skin_name):
         if self.mode != 'w' and self.mode != 'a':
-            raise PermissionError("Need to be in write or append mode to skin element into new sideset")
+            raise PermissionError("Need to be in write or append mode to skin element into new side set")
         self.ledger.skin(skin_id, skin_name)
         
     def write(self, path=None):
