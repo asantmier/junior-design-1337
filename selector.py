@@ -268,6 +268,8 @@ class PropertySelector:
         """
         Create a new object property selector.
 
+        Pass in ``...`` to select everything, ``None`` to select nothing, or a list of property names.
+
         :param exodus: the exodus object whose properties this refers to
         :param eb_prop: list of all element block properties to keep by name
         :param ns_prop: list of all node set properties to keep by name
